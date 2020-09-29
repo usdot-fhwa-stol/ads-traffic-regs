@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>ADS Regulations - Traffic Controls</title>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="stylesheet" href="css/w3.css"/>
+<link rel="stylesheet" href="css/fontawesome.min.css"/>
+<link rel="stylesheet" href="css/solid.min.css"/>
+<link rel="stylesheet" href="css/adsregs.css"/>
+<link rel="stylesheet" href="css/jquery-ui.min.css"/>
+<link rel="stylesheet" href="css/jquery-ui.structure.min.css"/>
+<link rel="stylesheet" href="css/jquery-ui.theme.min.css"/>
+<script src="script/jquery/jquery.js"></script>
+<script src="script/jquery/jquery-ui.min.js"></script>
+<script src="script/trafctrl.js"></script>
+</head>
+<body>
+
+<div class="w3-bar w3-sw-naval">
+        <a href="index.html" class="w3-bar-item w3-button"><i class="fas fa-taxi"></i>&nbsp;&nbsp;Home</a>
+        <a href="regulations.html" class="w3-bar-item w3-button"><i class="fas fa-list-ul"></i>&nbsp;&nbsp;Regulations</a>
+        <a href="situations.html" class="w3-bar-item w3-button"><i class="fas fa-th"></i>&nbsp;&nbsp;Situations</a>
+        <span class="w3-bar-item w3-sw-naval-l3"><i class="fas fa-traffic-light"></i>&nbsp;&nbsp;Traffic Controls</span>
+        <a href="search.html" class="w3-bar-item w3-button"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</a>
+        <a href="help.html" class="w3-bar-item w3-button"><i class="fas fa-life-ring"></i>&nbsp;&nbsp;Help</a>
+</div>
+
+<div id="main-content" class="w3-row"><br>
+        <div class="w3-container w3-third" style="height: calc(100% - 160px);">
+                <h3>Select a jurisdiction to list its traffic control types.</h3>
+                <div class="w3-card-4 w3-light-gray" style="height: 100%; overflow-y: auto;">
+                        <header class="w3-container w3-sw-midday">
+                                <h4>Jurisdictions</h4>
+                        </header>
+                        <div style="overflow-y: auto; height: calc(100% - 51px);">
+                                <ul id="jurList" class="w3-ul w3-hoverable">
+                                </ul>
+                        </div>
+                </div>
+        </div>
+        <div class="w3-container w3-twothird" style="height: calc(100% - 160px);">
+        <h3>Select a traffic control type to view its detail.</h3>
+                <div class="w3-card-4 w3-light-gray" style="height: 100%;">
+
+                        <header class="w3-container w3-sw-midday">
+                                <h4>Traffic Control Types</h4>
+                        </header>
+                        <div style="overflow-y: auto; height: calc(100% - 51px);">
+                                <ul id="controlList" class="w3-ul w3-hoverable" style="height: 100%;">
+                                </ul>
+                        </div>
+                </div>
+        </div>
+        <div id="controlDialog" class="w3-center w3-gray"></div>
+</div>
+
+
+<div class="w3-bottom w3-sw-naval">
+        <div class="w3-container" style="height: 39px;"></div>
+</div>
+
+</body>
+</html>

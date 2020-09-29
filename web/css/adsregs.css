@@ -1,0 +1,77 @@
+@font-face
+{
+	font-family: 'firasansregular';
+	src: url('../webfonts/FiraSans-Regular.woff2') format('woff2');
+}
+
+
+@font-face
+{
+	font-family: 'E2000';
+	src: url('../webfonts/Roadgeek2014SeriesE.woff2') format('woff2');
+}
+
+
+.w3-sw-naval {color: #fff !important; background-color: #2f3d4c !important}
+.w3-sw-kale-green {color: #fff !important; background-color: #4f6a56 !important}
+.w3-sw-naval-l2 {color: #000 !important; background-color: #828a93 !important}
+.w3-sw-naval-l3 {color: #000 !important; background-color: #abb1b7 !important}
+.w3-sw-tarnished-trumpet {color: #000 !important; background-color: #d5b176 !important}
+.w3-sw-midday {color: #000 !important; background-color: #f7d78a !important}
+
+
+html, body
+{
+	height: 100%;
+	font-family: 'firasansregular', trebuchet, sans-serif;
+	font-size: 1em;
+}
+
+
+.w3-container p
+{
+	font-size: 12pt;
+}
+
+
+#main-content
+{
+	position: fixed;
+	top: 39px;
+	right: 0px;
+	bottom: 39px;
+	left: 0px;
+	overflow: auto;
+}
+
+tr > th:nth-child(1)
+{
+	text-align: left;
+}
+#report-output td,th
+{
+	padding: 3px;
+	border: solid 1px;
+}
+
+#report-output tr th
+{
+	color: #000 !important; 
+	background-color: #d5b176 !important
+}
+
+#report-output tr:nth-child(even)
+{
+	background-color: lightgray;
+}
+
+.centered
+{
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.border-collapse
+{
+	border-collapse: collapse;
+}
