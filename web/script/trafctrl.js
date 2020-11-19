@@ -88,9 +88,10 @@ function tcdtypeSuccess(oData, sStatus, oJQXHR)
 				$('#controlList li').removeClass('w3-sw-kale-green');
 				$(this).addClass('w3-sw-kale-green');
 				let oDialog = $('#controlDialog');
-
+				oDialog.parent().attr('tabindex', 0)
 				oDialog.siblings().find(".ui-dialog-title").html(sTitleBar);
 				oDialog.html(oTcdType.svg);
+				oDialog.children('svg').attr('title', oTcdType.descr);
 				oDialog.dialog('open');
 			});
 	}

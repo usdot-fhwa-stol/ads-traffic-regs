@@ -82,6 +82,7 @@ function instructionSuccess(oData, sStatus, oJQXHR)
 					$('#instructList li').removeClass('w3-sw-kale-green');
 					$(this).addClass('w3-sw-kale-green');
 					let oDialog = $('#instructDialog');
+					oDialog.parent().attr('tabindex', 0);
 					oDialog.siblings().find(".ui-dialog-title").html(sTitleBar);
 					oDialog.html('<pre style="white-space: pre-wrap; overflow-y: auto;">\n' + oInstruction.content + '\n</pre>');
 					oDialog.dialog('open');
