@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>ADS Regulations - Regulations</title>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="stylesheet" href="css/w3.css"/>
+<link rel="stylesheet" href="css/fontawesome.min.css"/>
+<link rel="stylesheet" href="css/solid.min.css"/>
+<link rel="stylesheet" href="css/adsregs.css"/>
+<link rel="stylesheet" href="css/jquery-ui.min.css"/>
+<link rel="stylesheet" href="css/jquery-ui.structure.min.css"/>
+<link rel="stylesheet" href="css/jquery-ui.theme.min.css"/>
+<link rel="stylesheet" href="css/create.css"/>
+<script src="script/jquery/jquery.js"></script>
+<script src="script/jquery/jquery-ui.min.js"></script>
+<script src="script/create.js"></script>
+</head>
+<body>
+
+<div class="w3-bar w3-sw-naval">
+	<a href="index.html" class="w3-bar-item w3-button"><i class="fas fa-taxi"></i>&nbsp;&nbsp;Home</a>
+	<a href="regulations.html" class="w3-bar-item w3-button"><i class="fas fa-list-ul"></i>&nbsp;&nbsp;Regulations</a>
+	<a href="situations.html" class="w3-bar-item w3-button"><i class="fas fa-th"></i>&nbsp;&nbsp;Situations</a>
+	<a href="trafctrl.html" class="w3-bar-item w3-button"><i class="fas fa-traffic-light"></i>&nbsp;&nbsp;Traffic Controls</a>
+	<span class="w3-bar-item w3-sw-naval-l3"><i class="fas fa-folder-plus"></i>&nbsp;&nbsp;Create</span>
+</div>
+
+<div id="main-content" class="w3-row"><br>
+	<div class="w3-container w3-third" style="height: calc(100% - 160px);">
+		<div class="w3-card-4 w3-light-gray" style="height: 100%; overflow-y: auto;">
+			<header class="w3-container w3-sw-midday">
+				<h4>Elements</h4>
+			</header>
+			<div id="type-accordion">
+				<h3>Create Jurisdiction</h3>
+				<div id='jurisdiction-panel'>
+					<p>
+						Jurisdictions can be created by typing in a city, county, or state. After typing at least 3 characters for the label, options available from the system will be available for auto-complete.
+					</p>
+				</div>
+				<h3>Create Title</h3>
+				<div id='title-panel'>
+					<p>
+						Complete the form to create a title. Jurisdictions must be in the system already and will be auto-completed.
+					</p>
+				</div>
+				<h3>Create Instruction</h3>
+				<div id='instruction-panel'>
+					<p>
+						Complete the form to create an instruction. Titles must be in the system already and will be auto-completed. Use the buttons below content to insert section symbols, tabs, and newlines. Select situations that are referred to by the instruction by double clicking. Double clicking a selected situation will deselect it.
+					</p>
+				</div>
+				<h3>Create Situation</h3>
+				<div id='situation-panel'>
+					<p>
+						Complete the form to create a situation.
+					</p>
+				</div>
+				<h3>Create Traffic Control Device Type</h3>
+				<div id='tcdtype-panel'>
+					<p>
+						Complete the form to create a traffic control device type. Jurisdictions and instructions must be in the system already and will be auto-completed. The instruction input will be enabled once a jurisdiction is selected. Double clicking a selected instruction will deselect it.
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="w3-container w3-twothird" style="height: calc(100% - 160px);">
+		<div class="w3-card-4 w3-light-gray" style="height: 100%;">
+			<div class="tab" id="init-form">
+				<header class="w3-container w3-sw-midday">
+					<h4 title="left blank intentionally">&nbsp;</h4>
+				</header>
+				<p style="padding-left: 10px;">
+					Select an element to create from the list on the left.
+				</p>
+			</div>
+			<form class="tab" id="jurisdiction-form">
+				<header class="w3-container w3-sw-midday">
+					<h4>Jurisdiction</h4>
+				</header>
+				<table>
+					<tr>
+						<td>Label</td>
+						<td><input id="jurisdiction-label" name="label" placeholder="Name of the jurisdiction..."></td>
+					</tr>
+				</table>
+				<button id="jurisdiction-save">Save</button>
+			</form>
+			<form class="tab" id="title-form">
+				<header class="w3-container w3-sw-midday">
+					<h4>Title</h4>
+				</header>
+				<table>
+					<tr>
+						<td>Jurisdiction</td>
+						<td>
+							<input id="title-jurisdiction" type="text" placeholder="Jurisdiction that published the title...">
+							<input id="title-jurisdiction-id" name="jurisdiction" style="display:none;">
+						</td>
+					</tr>
+					<tr>
+						<td>Label</td>
+						<td><input id="title-label" name="label" placeholder="Name of the title..."></td>
+					</tr>
+					<tr>
+						<td>Biblio Ref</td>
+						<td><input id="title-biblo" name="bibloref" placeholder="Bibliographic reference of the title..."></td>
+					</tr>
+					<tr>
+						<td>URL Ref</td>
+						<td><input id="title-url" name="urlref" placeholder="URL reference of the title..."></td>
+					</tr>
+				</table>
+				<button id="title-save">Save</button>
+			</form>
+			<form class="tab" id="instruction-form">
+				<header class="w3-container w3-sw-midday">
+					<h4>Instruction</h4>
+				</header>
+				<table>
+					<tr>
+						<td>Title</td>
+						<td>
+							<input id="instruction-title" placeholder="Title that includes the instruction...">
+							<input id="instruction-title-id" name="title" style="display: none;">
+						</td>
+					</tr>
+					<tr>
+						<td>Label</td>
+						<td><input id="instruction-label" name="label" placeholder="Name of the instruction..."></td>
+					</tr>
+					<tr>
+						<td>Biblio Ref</td>
+						<td><input id="instruction-biblo" name="biblioref" placeholder="Bibliographic reference of the instruction..."></td>
+					</tr>
+					<tr>
+						<td>URL Ref</td>
+						<td><input id="instruction-url" name="urlref" placeholder="URL reference of the instruction..."></td>
+					</tr>
+					<tr>
+						<td>Content<br>
+							<button id="section-btn" class="char-btn">&#167;</button>&nbsp;<button class="char-btn" id="tab-btn">tab</button><br>
+							<button id="return-btn" class="char-btn">↵</button>
+						</td>
+						<td><textarea rows=5 id="instruction-content" name="content" placeholder="Text content of the instruction..."></textarea></td>
+					</tr>
+					<tr>
+						<td>Situations</td>
+						<td><label for="instruction-situations-from">Available situations</label><label style="float: right;" for="instruction-situations-to">Selected situations</label><br><select multiple="multiple" size=7 id="instruction-situations-from"></select><select style="float: right;" multiple="multiple" size=7 id="instruction-situations-to" name="situations"></select></td>
+					</tr>
+				</table>
+				<button id="instruction-save">Save</button>
+			</form>
+			<form class="tab" id="situation-form">
+				<header class="w3-container w3-sw-midday">
+					<h4>Situation</h4>
+				</header>
+				<table>
+					<tr>
+						<td>Label</td>
+						<td><input id="situation-label" name="label" placeholder="Name of the title..."></td>
+					</tr>
+				</table>
+				<button id="situation-save">Save</button>
+			</form>
+			<form class="tab" id="tcdtype-form">
+				<header class="w3-container w3-sw-midday">
+					<h4>Traffic Control Device Type</h4>
+				</header>
+				<table>
+					<tr>
+						<td>Jurisdiction</td>
+						<td>
+							<input id="tcd-jurisdiction" placeholder="Jurisdiction that deploys the traffic control device type...">
+							<input id="tcd-jurisdiction-id" name="jurisdiction" style="display:none;">
+						</td>
+					</tr>
+					<tr>
+						<td>Label</td>
+						<td><input id="tcd-label" name="label" placeholder="Name of the traffic control device type..."></td>
+					</tr>
+					<tr>
+						<td>Description</td>
+						<td><input id="tcd-description" name="descr" placeholder="Description of the traffic control device type..."></td>
+					</tr>
+					<tr>
+						<td>Instructions</td>
+						<td>
+							<input id="tcd-instructions" placeholder="List of the instructions that refer to this traffic control device type...">
+						</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>
+							<label for="tcd-selected-instructions">Selected instructions</label><br>
+							<select id="tcd-selected-instructions" name="instrs" multiple="multiple" size=5>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>Units</td>
+						<td><input id="tcd-units" name="units" placeholder="Unit of measure used to construct this traffic control device type..."></td>
+					</tr>
+					<tr>
+						<td>Svg</td>
+						<td><textarea rows=5 id="tcd-svg" name="svg" placeholder="Html svg tag that renders the traffic control device type..."></textarea></td>
+					</tr>
+				</table>
+				<button id="tcdtype-save">Save</button>
+			</form>
+		</div>
+	</div>
+</div>
+
+<div class="w3-bottom w3-sw-naval">
+	<div class="w3-container" style="height: 39px;"></div>
+</div>
+
+</body>
+</html>
