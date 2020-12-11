@@ -67,6 +67,11 @@ A traffic control device type represents the different types of traffic control 
 
 ### Home
 ![Home](/screenshots/home.png)
+
+### Regulations
+![Home](/screenshots/regulations_list.png)
+
+![Home](/screenshots/regulations_dialog.png)
 ## Deployment
 
 
