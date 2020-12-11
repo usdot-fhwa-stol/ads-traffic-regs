@@ -63,6 +63,10 @@ A traffic control device type represents the different types of traffic control 
 * units (String) - The unit of measurement used to construct this traffic control device type.
 * svg (String) - The html svg tag that renders this traffic control device type.
 
+## Website Screenshots
+
+### Home
+![Home](/screenshots/home.png)
 ## Deployment
 
 
