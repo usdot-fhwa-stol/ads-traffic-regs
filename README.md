@@ -94,6 +94,56 @@ A traffic control device type represents the different types of traffic control 
 
 ![Create Traffic Control Device Type](/screenshots/create_traffic_control_device_type.png)
 
+## Traffic Regulations Database for Automated Driving Systems
+
+### Introduction
+This is the code for Automated Driving Systems (ADS) regulation database testing scenarios.
+The test was designed to demonstrate a collaborative implementation of autonomous vehicle (AV) integration with Traffic laws and Regulations database framework.
+
+With the assumption of a complete sensor suite and wireless communication, AV can extract traffic laws and regulations from the database and make appropriate judgments.
+
+The test contains two scenarios, right turn on red and freeway overtake. With the same database, the AV is expected to follow different strategies at different locations.
+
+### Environment Setup
+Install the latest version of the CARLA simulator.
+https://carla.readthedocs.io/en/latest/start_quickstart/
+
+Then install all dependencies based on the requirements.
+ ```Shell
+  cd root/of/TRD-ADS
+  pip install -r networkx
+  pip install -r numpy
+  pip install -r pygame
+  pip install -r requests
+  ```
+### Test Freeway Scenrio
+This part is used to test overtaking behavior on freeway. To run the algorithm:
+
+ ```Shell
+  cd root/of/TRD-ADS
+  python -m freeway.overtaking_mid_lane -l
+ ```
+To throw more vehicles to test the algorithm, after run overtaking_mid_lane.py,  
+open another tab and run followings:
+
+  ```Shell
+  python -m freeway.spawn_ NPC_for_overtaking
+  ```
+
+### Test Intersection Scenrio
+This part is used to test overtaking behavior on freeway. To run the algorithm:
+
+ ```Shell
+  cd root/of/TRD-ADS
+  python -m intersection.turn_on_red_scenario -l
+ ```
+To throw more vehicles to test the algorithm, after run overtaking_mid_lane.py,  
+open another tab and run followings:
+
+  ```Shell
+  python -m intersection.spawn_ NPC_for_intersection
+  ```
+
 ## Deployment
 
 
