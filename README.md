@@ -145,10 +145,14 @@ open another tab and run followings:
   ```
 
 ## Deployment
-
+First clone the code repository from https://github.com/usdot-fhwa-stol/ads-traffic-regs.git. The server running the application needs to have [Java](https://openjdk.java.net/install/) and the [Apache Tomcat](https://tomcat.apache.org/download-90.cgi) web server installed. Compile the Java source code and place the class files into the classes directory of Tomcat. Place all of the files in the web directory into the ROOT directory of Tomcat.
 
 ## Configuration
-
+The Tomcat web server must be configured to run on the deployment server. Click [here](https://tomcat.apache.org/tomcat-9.0-doc/index.html) to find the documentation for Tomcat. There are many configuration items to consider but two that must be addressed for any deployment are adding the domain name and SSL Certificate to the server.xml file. Proper security measures dealing with file permissions should be taken as well. According to Tomcat's [documentation](https://tomcat.apache.org/tomcat-9.0-doc/security-howto.html#System_Properties) a tomcat user and group should be created in the operating system. The standard configuration for file permissions is to have all Tomcat files owned by root with group tomcat. Owner should have read/write permissions, group should have read permission, and world has no permissions. The exceptions are the logs, temp and work directory that are owned by the tomcat user rather than root. 
+Once everything is configured for the deployment, the following command (make sure you replace <path-to-tomcat> with the directory path where tomcat is installed) can be ran to start the application:
+```
+sudo -u tomcat <path-to-tomcat>/bin/catalina.sh start
+```
 
 ## Code of Conduct 
 Please read our [Code of Conduct](Code_of_Conduct.md) which outlines our expectations for participants within the community, as well as steps to reporting unacceptable behavior. We are committed to providing a welcoming and inspiring community for all and expect our code of conduct to be honored. Anyone who violates this code of conduct may be banned from the community.
