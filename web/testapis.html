@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>test page</title>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="stylesheet" href="css/w3.css"/>
+<link rel="stylesheet" href="css/fontawesome.min.css"/>
+<link rel="stylesheet" href="css/solid.min.css"/>
+<script src="script/jquery/jquery.js"></script>
+<script src="script/testapis.js"></script>
+</head>
+<body>
+	<form id="jurisdictionForm">
+		<fieldset>
+			<legend>Jurisdictions</legend>
+			<label for="lon">Lon:</label>
+			<input type="number" id="lon" name="lon" value="-82"><br><br>
+			<label for="lat">Lat:</label>
+			<input type="number" id="lat" name="lat" value="39"><br><br>
+			<input type="button" id="btnJurisdictionSubmit" value="Submit">
+		</fieldset>
+	</form>
+	<br><br>
+	<div>
+		<label for="jurisdictionOutput">Jurisdictions Response:</label>
+		<div id="jurisdictionOutput" style="height: 300px; border: 2px solid #000; overflow-y: auto; background-color: #fff;"></div>
+	</div>
+	<br><br>
+	<form id="boundaryForm">
+		<fieldset>
+			<legend>Boundaries</legend>
+			<select name="id" id="boundaries" multiple></select>
+			<input type="button" id="btnBoundarySubmit" value="Submit">
+		</fieldset>
+	</form>
+	<br><br>
+	<div>
+		<label for="boundaryOutput">Boundaries Response:</label>
+		<div id="boundaryOutput" style="height: 300px; border: 2px solid #000; overflow-y: auto; background-color: #fff;"></div>
+	</div>
+	<br><br>
+	<form id="situationForm">
+		<fieldset>
+			<legend>Situations</legend>
+			<select name="id" id="situations" multiple></select>
+			<input type="button" id ="btnSituationSubmit" value="Submit">
+		</fieldset>
+	</form>
+	<br><br>
+	<div>
+		<label for="situationOutput">Situations Response:</label>
+		<div id="situationOutput" style="height: 300px; border: 2px solid #000; overflow-y: auto; background-color: #fff;"></div>
+	</div>
+</body>
+</html>
+
