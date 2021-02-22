@@ -84,7 +84,7 @@ A traffic control device type represents the different types of traffic control 
 ![Traffic Controls Dialog](/screenshots/traffic_controls_dialog.png)
 
 ### Create
-![Create Jurisdiction](/screenshots/create_jurisdiction.png)
+![Create Jurisdiction](/screenshots/create_jurisdiction_w_map.png)
 
 ![Create Title](/screenshots/create_title.png)
 
