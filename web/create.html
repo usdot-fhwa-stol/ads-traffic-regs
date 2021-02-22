@@ -12,9 +12,11 @@
 <link rel="stylesheet" href="css/jquery-ui.structure.min.css"/>
 <link rel="stylesheet" href="css/jquery-ui.theme.min.css"/>
 <link rel="stylesheet" href="css/create.css"/>
+<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.css"/>
 <script src="script/jquery/jquery.js"></script>
 <script src="script/jquery/jquery-ui.min.js"></script>
-<script src="script/create.js"></script>
+<script src="https://api.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.js"></script>
+<script type="module" src="script/create.js"></script>
 </head>
 <body>
 
@@ -86,6 +88,7 @@
 						<td><input id="jurisdiction-label" name="label" placeholder="Name of the jurisdiction..."></td>
 					</tr>
 				</table>
+				<div id="map-container" style="width: calc(100% - 20px); height: 500px; display: none; margin: 10px; border: 2px solid #aaaaaa;"></div>
 				<button id="jurisdiction-save">Save</button>
 			</form>
 			<form class="tab" id="title-form">

@@ -18,6 +18,13 @@ import java.util.HashMap;
  */
 public abstract class BCFactory
 {
+	public static final int JURISDICTION = 0;
+	public static final int TITLE = 1;
+	public static final int INSTRUCTION = 2;
+	public static final int SITUATION = 3;
+	public static final int TCDTYPE = 4;
+	public static final int BOUNDARY = 5;
+	public static final String[] CURSPECS;
 	private static final HashMap<String, String> SPECS = new HashMap();
 	static
 	{
@@ -27,7 +34,16 @@ public abstract class BCFactory
 		SPECS.put("KH7-vrSYgPGnAfPlPKER-c+0k_9jVFCgNJ2hrvS0SX8", "adsregs.bc.Title");
 		SPECS.put("pAyju5PfE-pdmnlIQRR2VW0U03eosLNwgrQDAzXV2zA", "adsregs.bc.Instruction");
 		SPECS.put("b10WN1VecV8vsHpCfyQA1jkA40ITFxDp53cq4zjrf14", "adsregs.bc.TcdType");
+		
+		CURSPECS = new String[6];
+		CURSPECS[JURISDICTION] = "XvjubB-LL7-JKfTUI1NX2pbA9xHGm1Xir9eATiSD8Ss";
+		CURSPECS[TITLE] = "KH7-vrSYgPGnAfPlPKER-c+0k_9jVFCgNJ2hrvS0SX8";
+		CURSPECS[INSTRUCTION] = "pAyju5PfE-pdmnlIQRR2VW0U03eosLNwgrQDAzXV2zA";
+		CURSPECS[SITUATION] = "T8kx8J_0UgNmL5oTP1Edj5JqwlV8uf_g4doTR9JJhV8";
+		CURSPECS[TCDTYPE] = "b10WN1VecV8vsHpCfyQA1jkA40ITFxDp53cq4zjrf14";
+		CURSPECS[BOUNDARY] = "eFQYRLXjJNehfyAcl0raXWYv5Q2JrbLTr9pW4kdG5eg";
 	}
+	
 	
 	public static BCBase createFromJson(Path oJsonFile)
 	   throws Exception

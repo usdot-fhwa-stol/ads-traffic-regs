@@ -6,9 +6,12 @@
 package adsregs.bc;
 
 import adsregs.util.Text;
+import com.github.aelstad.keccakj.fips202.Shake256;
 import java.io.BufferedWriter;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.RandomAccessFile;
 import java.io.Reader;
 import java.io.Writer;
@@ -19,6 +22,7 @@ import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -48,6 +52,21 @@ public abstract class BCIndex
 	private static final Object LOCK = new Object();
 	private static final String DATEFORMAT = "yyyy-MM-dd'T'HH:mm:ssX";
 	public static final TimeZone UTC = new SimpleTimeZone(0, "");
+	private static final char[] GENSISPREV;
+	private static final ArrayList<ArrayList<char[]>> TYPELISTS;
+	
+	static
+	{
+		GENSISPREV = new char[43];
+		Arrays.fill(GENSISPREV, 'A');
+		TYPELISTS = new ArrayList(6);
+		TYPELISTS.add(JURISDICTIONS);
+		TYPELISTS.add(TITLES);
+		TYPELISTS.add(INSTRUCTIONS);
+		TYPELISTS.add(SITUATIONS);
+		TYPELISTS.add(TCDTYPES);
+		TYPELISTS.add(BOUNDARIES);
+	}
 	
 	public static Path getPath(CharSequence sId)
 	{
@@ -262,7 +281,7 @@ public abstract class BCIndex
 	}
 	
 	
-	public static boolean updateTail(CharSequence sPrevTail, CharSequence sNewTail, long lTime)
+	public static boolean updateTail(CharSequence sPrevTail, CharSequence sNewTail, long lTime, int nType)
 	   throws Exception
 	{
 		char[] cPrev = Text.getCharArray(sPrevTail);
@@ -276,10 +295,17 @@ public abstract class BCIndex
 		synchronized (LOCK)
 		{
 			int nPrevIndex = Collections.binarySearch(TAILINDEX, oSearch, CMP_TAIL);
+			IndexRecord oRecord = null;
 			if (nPrevIndex < 0)
-				throw new Exception("Previous tail does not exist.");
+			{
+				if (Text.CHAR_ARRAY_COMP.compare(cPrev, GENSISPREV) == 0)
+					oRecord = new IndexRecord(cCurr, cCurr, cTimestamp, (int)Files.size(Paths.get(BASEDIR + INDEXFILE)));
+				else
+					throw new Exception("Previous tail does not exist.");
+			}
+			else
+				oRecord = TAILINDEX.remove(nPrevIndex); // remove from the list to reinsert in the correct position
 			
-			IndexRecord oRecord = TAILINDEX.remove(nPrevIndex); // remove from the list to reinsert in the correct position
 			oSearch.m_cTailId = cCurr;
 			int nCurrIndex = Collections.binarySearch(TAILINDEX, oSearch, CMP_TAIL);
 			char[] cRecordId = oRecord.m_cTailId;
@@ -301,6 +327,14 @@ public abstract class BCIndex
 				for (int nIndex = 0; nIndex < cTimestamp.length; nIndex++)
 					oRaf.write(cTimestamp[nIndex]);
 			}
+			
+			ArrayList<char[]> oTypeList = TYPELISTS.get(nType);
+			
+
+			int nIndex = Collections.binarySearch(oTypeList, cCurr, Text.CHAR_ARRAY_COMP); // add to the correct list in order
+			if (nIndex < 0)
+				oTypeList.add(~nIndex, cCurr);
+				
 		}
 		
 		return true;
@@ -797,6 +831,53 @@ public abstract class BCIndex
 		{
 			return null;
 		}
+	}
+	
+	
+	public static String createBlock(StringBuilder sJson, int nType)
+	{
+		String sRet = null;
+		String sSpec = BCFactory.CURSPECS[nType];
+		sJson.append("\"specid\":\"").append(sSpec).append("\",");
+		SimpleDateFormat oSdf = new SimpleDateFormat(DATEFORMAT);
+		oSdf.setTimeZone(UTC);
+		long lNow = System.currentTimeMillis();
+		sJson.append("\"created-dt\":\"").append(oSdf.format(lNow)).append("\",");
+		int nSeq = 0;
+		String sPrevId = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+		sJson.append("\"previd\":\"").append(sPrevId).append("\",");
+		sJson.append("\"seq\":").append(nSeq).append(",");
+		Shake256 oMd = new Shake256();
+		try
+		(
+			DataOutputStream oAbsorb = new DataOutputStream(oMd.getAbsorbStream());
+			InputStream oSqueeze = oMd.getSqueezeStream();		   
+		)
+		{
+			oAbsorb.writeUTF(sJson.toString());
+			byte[] yId = new byte[32];
+			oSqueeze.read(yId);
+			sRet = Base64.getUrlEncoder().withoutPadding().encodeToString(yId);
+			sJson.append("\"currid\":\"").append(sRet).append("\"");
+			sJson.append('}');
+			
+			Path oFile = getPath(sRet);
+			System.out.println("Writing file: " + oFile.toString());
+			Files.createDirectories(oFile.getParent());
+			try (BufferedWriter oOut = Files.newBufferedWriter(oFile, StandardCharsets.UTF_8))
+			{
+				oOut.append(sJson);
+			}
+			updateTail(sPrevId, sRet, lNow, nType);
+		}
+		catch (Exception oEx)
+		{
+			oEx.printStackTrace();
+			return null;
+		}
+		
+		
+		return sRet;
 	}
 	
 	private static class IndexRecord

@@ -29,6 +29,32 @@ import javax.servlet.http.HttpServletResponse;
 public class InstructionServlet extends HttpServlet
 {
 	@Override
+	public void doGet(HttpServletRequest oReq, HttpServletResponse oRes)
+	   throws ServletException, IOException
+	{
+		ArrayList<Instruction> oInstructions = new ArrayList();
+		BCIndex.getCurrentInstructions(oInstructions);
+		
+		StringBuilder sValBuf = new StringBuilder();
+		StringBuilder sResBuf = new StringBuilder();
+		
+		sResBuf.append('{');
+		for (Instruction oInstruction : oInstructions)
+		{
+			oInstruction.getValue("currid", sValBuf);
+			sResBuf.append('\"').append(sValBuf).append("\":\"");
+			oInstruction.getValue("label", sValBuf);
+			sResBuf.append(sValBuf).append("\",");
+		}
+		sResBuf.setLength(sResBuf.length() - 1); // remove trailing comma
+		sResBuf.append('}');
+		
+		oRes.getWriter().append(sResBuf);
+		oRes.setContentType("application/json");
+	}
+	
+	
+	@Override
 	public void doPost(HttpServletRequest oReq, HttpServletResponse oRes)
 	   throws ServletException, IOException
 	{
